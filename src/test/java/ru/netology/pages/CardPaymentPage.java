@@ -14,16 +14,13 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class CardPaymentPage {
-    private SelenideElement formPayment = $(byText("Оплата по карте"));
-    private SelenideElement cardNumberField = $("input[placeholder='0000 0000 0000 0000']");
-    private SelenideElement monthField = $(By.cssSelector("input[placeholder='08']"));
+    private SelenideElement cardNumberField = $("input [placeholder='0000 0000 0000 0000']");
+    private SelenideElement monthField = $(By.cssSelector("input [placeholder='08']"));
     private SelenideElement yearField = $(By.cssSelector("input[placeholder='22']"));
     private SelenideElement ownerField = $(By.xpath("//span[text()='Владелец']/..//input"));
     private SelenideElement cvcField = $("[placeholder='999']");
     private SelenideElement continueButton = $(byText("Продолжить"));
-    public CardPaymentPage() {
-        formPayment.shouldBe(Condition.visible);
-    }
+
 
 
     public void fillingPaymentForm (DataHelper.CardInfo cardInfo) {
@@ -34,19 +31,13 @@ public class CardPaymentPage {
         cvcField.setValue(cardInfo.getCvc());
         continueButton.click();
     }
-    private SelenideElement successNotification = $(byText("Успешно"))
-            .shouldBe(visible, Duration.ofSeconds(15));
-    private SelenideElement errorNotification = $(byText("Ошибка"))
-            .shouldBe(visible, Duration.ofSeconds(15));
+    private SelenideElement successNotification = $(byText("Успешно"));
+    private SelenideElement errorNotification = $(byText("Ошибка"));
 
-    private SelenideElement formatError = $(byText("Неверный формат"))
-            .shouldBe(visible);;
-    private SelenideElement ownerRequiredField = $(byText("Поле обязательно для заполнения"))
-            .shouldBe(visible);;
-    private SelenideElement expiredLastMonthField = $(byText("Невено указан срок действия карты"))
-            .shouldBe(visible);;
-    private SelenideElement expiredLastYearField = $(byText("Истек срок действия карты"))
-            .shouldBe(visible);;
+   private SelenideElement formatError = $(byText("Неверный формат"));
+    private SelenideElement ownerRequiredField = $(byText("Поле обязательно для заполнения"));
+    private SelenideElement expiredLastMonthField = $(byText("Невено указан срок действия карты"));
+    private SelenideElement expiredLastYearField = $(byText("Истек срок действия карты"));
 
 
 
@@ -56,18 +47,18 @@ public class CardPaymentPage {
     public void errorPayment() {
         errorNotification.shouldBe(visible, Duration.ofSeconds(15));
     }
-    public void requiredField() {
-        ownerRequiredField.shouldBe(visible);
+   public void requiredField() {
+   ownerRequiredField.shouldBe(visible);
     }
-    public void invalidFormatField() {
-        formatError.shouldBe(visible);
-    }
-    public void expiredLastMonth() {
+   public void invalidFormatField() {
+   formatError.shouldBe(visible);
+   }
+   public void expiredLastMonth() {
         expiredLastMonthField.shouldBe(visible);
-    }
+   }
     public void expiredLastYear() {
-        expiredLastYearField.shouldBe(visible);
-    }
+    expiredLastYearField.shouldBe(visible);
+   }
 
 
 

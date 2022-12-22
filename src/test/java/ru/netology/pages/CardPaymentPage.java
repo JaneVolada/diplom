@@ -14,6 +14,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class CardPaymentPage {
+    private SelenideElement formPayment = $(byText("Купить"));
     private SelenideElement cardNumberField = $("input [placeholder='0000 0000 0000 0000']");
     private SelenideElement monthField = $(By.cssSelector("input [placeholder='08']"));
     private SelenideElement yearField = $(By.cssSelector("input[placeholder='22']"));
@@ -21,6 +22,9 @@ public class CardPaymentPage {
     private SelenideElement cvcField = $("[placeholder='999']");
     private SelenideElement continueButton = $(byText("Продолжить"));
 
+    public CardPaymentPage() {
+        formPayment.shouldBe(Condition.visible);
+    }
 
 
     public void fillingPaymentForm (DataHelper.CardInfo cardInfo) {

@@ -1,7 +1,9 @@
 package ru.netology.pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import ru.netology.data.DataHelper;
 
 import java.time.Duration;
@@ -9,19 +11,20 @@ import java.time.Duration;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class CardPaymentPage {
     private SelenideElement formPayment = $(byText("Оплата по карте"));
-    private SelenideElement cardNumberField = $(byText("Номер карты"));
-    private SelenideElement monthField = $(byText("Месяц"));
-    private SelenideElement yearField = $(byText("Год"));
-    private SelenideElement ownerField = $(byText("Владелец"));
-    private SelenideElement cvcField = $(byText("CVC/CVV"));
+    private SelenideElement cardNumberField = $("input[placeholder='0000 0000 0000 0000']");
+    private SelenideElement monthField = $(By.cssSelector("input[placeholder='08']"));
+    private SelenideElement yearField = $(By.cssSelector("input[placeholder='22']"));
+    private SelenideElement ownerField = $(By.xpath("//span[text()='Владелец']/..//input"));
+    private SelenideElement cvcField = $("[placeholder='999']");
     private SelenideElement continueButton = $(byText("Продолжить"));
-
     public CardPaymentPage() {
         formPayment.shouldBe(Condition.visible);
     }
+
 
     public void fillingPaymentForm (DataHelper.CardInfo cardInfo) {
         cardNumberField.setValue(cardInfo.getCardNumber());

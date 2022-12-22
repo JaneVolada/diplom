@@ -34,9 +34,9 @@ public class CardPaymentTest {
     @Test
     public void shouldValidValues (){
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoValidValues());
-        cardPayment.successfulPayment();
+        var cardPayment = startPage.cardPayment(); //открываем стартовую страницу, нажимаем кнопку "Купить"
+        cardPayment.fillingPaymentForm(DataHelper.getCardInfoValidValues()); //на открывшейся странице заполняем форму валидными данными CardInfo из getCardInfoValidValues
+        cardPayment.successfulPayment(); //сравниваем, что в течении 15 секунд появилась надпись "Успешно"
         var paymentStatus = SQLHelper.getStatusCardPayment();
         assertEquals("APPROVED", paymentStatus);
 

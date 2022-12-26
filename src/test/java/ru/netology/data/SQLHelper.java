@@ -12,8 +12,13 @@ public class SQLHelper {
     private static QueryRunner runner = new QueryRunner();
 
     private static Connection getConn() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
+        return DriverManager.getConnection(
+                System.getProperty("db.url"),
+                System.getProperty("db.user"),
+                System.getProperty("db.password")
+        );
     }
+
     @SneakyThrows
     public static void cleanDataBase() {
         var connection = getConn();
@@ -22,7 +27,7 @@ public class SQLHelper {
         runner.execute(connection, "DELETE FROM order_entity");
     }
 
-    public static String getStatusCardPayment(){
+    public static String getStatusCardPayment() {
         var statusSQL = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
         try (var conn = getConn()) {
             var status = runner.query(conn, statusSQL, new ScalarHandler<String>());
@@ -33,7 +38,7 @@ public class SQLHelper {
         return null;
     }
 
-    public static String getStatusCreditCard(){
+    public static String getStatusCreditCard() {
         var statusSQL = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
         try (var conn = getConn()) {
             var status = runner.query(conn, statusSQL, new ScalarHandler<String>());

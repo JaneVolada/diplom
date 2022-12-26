@@ -8,13 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.DataHelper;
 import ru.netology.data.SQLHelper;
-import ru.netology.pages.CardPaymentPage;
 import ru.netology.pages.StartPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CardPaymentTest {
+public class CreditCardTest {
     @BeforeAll
     static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -38,132 +37,132 @@ public class CardPaymentTest {
     @Test
     public void shouldValidValues() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoValidValues());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoValidValues());
         cardPayment.successfulPayment();
-        var paymentStatus = SQLHelper.getStatusCardPayment();
+        var paymentStatus = SQLHelper.getStatusCreditCard();
         assertEquals("APPROVED", paymentStatus);
     }
 
     @Test
     public void shouldIfCardNumberDeclined() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoCardNumberDeclined());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoCardNumberDeclined());
         cardPayment.errorPayment();
-        var paymentStatus = SQLHelper.getStatusCardPayment();
+        var paymentStatus = SQLHelper.getStatusCreditCard();
         assertEquals("DECLINED", paymentStatus);
     }
 
     @Test
     public void shouldIfCardNumberNull() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoCardNumberNull());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoCardNumberNull());
         cardPayment.invalidFormatField();
     }
 
     @Test
     public void shouldIfCardNumberEmpty() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoCardNumberEmpty());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoCardNumberEmpty());
         cardPayment.invalidFormatField();
     }
 
     @Test
     public void shouldIfCardNumberLess() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoCardNumberLess());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoCardNumberLess());
         cardPayment.invalidFormatField();
     }
 
     @Test
     public void shouldIfMonthEmpty() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoMonthEmpty());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoMonthEmpty());
         cardPayment.invalidFormatField();
     }
 
     @Test
     public void shouldIfMonthNull() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoMonthNull());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoMonthNull());
         cardPayment.invalidFormatField();
     }
 
     @Test
     public void shouldIfMonthMore() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoMonthMore());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoMonthMore());
         cardPayment.invalidFormatField();
     }
 
     @Test
     public void shouldIfExpiredLastMonth() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoExpiredLastMonth());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoExpiredLastMonth());
         cardPayment.expiredLastMonth();
     }
 
     @Test
     public void shouldIfYearEmpty() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoYearEmpty());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoYearEmpty());
         cardPayment.invalidFormatField();
     }
 
     @Test
     public void shouldIfExpiredLastYear() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoExpiredLastYear());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoExpiredLastYear());
         cardPayment.expiredLastYear();
     }
 
     @Test
     public void shouldIfOwnerEmpty() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoOwnerEmpty());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoOwnerEmpty());
         cardPayment.requiredField();
     }
 
     @Test
     public void shouldIfCyrillicName() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoCyrillicName());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoCyrillicName());
         cardPayment.invalidFormatField();
     }
 
     @Test
     public void shouldIfSymbolName() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoSymbolName());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoSymbolName());
         cardPayment.invalidFormatField();
     }
 
     @Test
     public void shouldIfCVCEmpty() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoCVCEmpty());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoCVCEmpty());
         cardPayment.invalidFormatField();
     }
 
     @Test
     public void shouldIfCVCNull() {
         var startPage = new StartPage();
-        var cardPayment = startPage.cardPayment();
-        cardPayment.fillingPaymentForm(DataHelper.getCardInfoCVCNull());
+        var cardPayment = startPage.creditCard();
+        cardPayment.fillingCreditCardPaymentForm(DataHelper.getCardInfoCVCNull());
         cardPayment.invalidFormatField();
     }
 

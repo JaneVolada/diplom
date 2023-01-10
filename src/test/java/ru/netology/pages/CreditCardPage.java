@@ -35,7 +35,6 @@ public class CreditCardPage {
 
     private SelenideElement successNotification = $(byText("Успешно"));
     private SelenideElement errorNotification = $(byText("Ошибка"));
-
     private SelenideElement formatError = $(byText("Неверный формат"));
     private SelenideElement ownerRequiredField = $(byText("Поле обязательно для заполнения"));
     private SelenideElement expiredLastMonthField = $(byText("Неверно указан срок действия карты"));

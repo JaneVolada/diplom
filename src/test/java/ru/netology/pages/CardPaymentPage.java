@@ -26,7 +26,6 @@ public class CardPaymentPage {
         formPayment.shouldBe(Condition.visible);
     }
 
-
     public void fillingPaymentForm(DataHelper.CardInfo cardInfo) {
         cardNumberField.setValue(cardInfo.getCardNumber());
         monthField.setValue(cardInfo.getMonth());
@@ -38,12 +37,10 @@ public class CardPaymentPage {
 
     private SelenideElement successNotification = $(byText("Успешно"));
     private SelenideElement errorNotification = $(byText("Ошибка"));
-
     private SelenideElement formatError = $(byText("Неверный формат"));
     private SelenideElement ownerRequiredField = $(byText("Поле обязательно для заполнения"));
     private SelenideElement expiredLastMonthField = $(byText("Неверно указан срок действия карты"));
     private SelenideElement expiredLastYearField = $(byText("Истёк срок действия карты"));
-
 
     public void successfulPayment() {
         successNotification.shouldBe(visible, Duration.ofSeconds(15));

@@ -12,6 +12,46 @@ public class DataHelper {
     private DataHelper() {
     }
 
+    public static String getApprovedCardNumber() {
+        return "4444444444444441";
+    }
+
+    public static String getDeclinedCardNumber() {
+        return "4444444444444442";
+    }
+
+    public static String getInvalidCardNumber() {
+        return "111111";
+    }
+
+    public static String getCurrentMonth() {
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
+    }
+
+    public static String getLastMonth() {
+        return LocalDate.now().minusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
+    }
+
+    public static String getCurrentYear() {
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
+    }
+
+    public static String getNextYear() {
+        return LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy"));
+    }
+
+    public static String getLastYear() {
+        return LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("yy"));
+    }
+
+    public static String getName() {
+        return faker.name().firstName() + " " + faker.name().lastName();
+    }
+
+    public static String getCVC() {
+        return Integer.toString(faker.number().numberBetween(100, 999));
+    }
+
     static Faker faker = new Faker(new Locale("en"));
 
     @Value
@@ -24,130 +64,66 @@ public class DataHelper {
     }
 
     public static CardInfo getCardInfoValidValues() {
-        return new CardInfo("4444444444444441",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(),
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getApprovedCardNumber(), getCurrentMonth(), getNextYear(), getName(), getCVC());
     }
 
     public static CardInfo getCardInfoCardNumberDeclined() {
-        return new CardInfo("4444444444444442",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(),
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getDeclinedCardNumber(), getCurrentMonth(), getNextYear(), getName(), getCVC());
     }
 
     public static CardInfo getCardInfoCardNumberNull() {
-        return new CardInfo("0000000000000000",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(),
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo("0000000000000000", getCurrentMonth(), getNextYear(), getName(), getCVC());
     }
 
     public static CardInfo getCardInfoCardNumberEmpty() {
-        return new CardInfo(" ",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(),
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(" ", getCurrentMonth(), getNextYear(), getName(), getCVC());
     }
 
     public static CardInfo getCardInfoCardNumberLess() {
-        return new CardInfo("111111",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(),
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getInvalidCardNumber(), getCurrentMonth(), getNextYear(), getName(), getCVC());
     }
 
     public static CardInfo getCardInfoMonthEmpty() {
-        return new CardInfo("4444444444444441",
-                " ",
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(),
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getApprovedCardNumber(), " ", getNextYear(), getName(), getCVC());
     }
 
     public static CardInfo getCardInfoMonthNull() {
-        return new CardInfo("4444444444444441",
-                "00",
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(),
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getApprovedCardNumber(), "00", getNextYear(), getName(), getCVC());
     }
 
     public static CardInfo getCardInfoMonthMore() {
-        return new CardInfo("4444444444444441",
-                "13",
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(),
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getApprovedCardNumber(), "13", getNextYear(), getName(), getCVC());
     }
 
     public static CardInfo getCardInfoExpiredLastMonth() {
-        return new CardInfo("4444444444444441",
-                LocalDate.now().minusMonths(1).format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(),
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getApprovedCardNumber(), getLastMonth(), getLastYear(), getName(), getCVC());
     }
 
     public static CardInfo getCardInfoYearEmpty() {
-        return new CardInfo("4444444444444441",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                " ",
-                faker.name().firstName() + " " + faker.name().lastName(),
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getApprovedCardNumber(), getCurrentMonth(), " ", getName(), getCVC());
     }
 
     public static CardInfo getCardInfoExpiredLastYear() {
-        return new CardInfo("4444444444444441",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(),
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getApprovedCardNumber(), getCurrentMonth(), getLastYear(), getName(), getCVC());
     }
 
     public static CardInfo getCardInfoOwnerEmpty() {
-        return new CardInfo("4444444444444441",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                " ",
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getApprovedCardNumber(), getCurrentMonth(), getNextYear(), " ", getCVC());
     }
 
     public static CardInfo getCardInfoCyrillicName() {
-        return new CardInfo("4444444444444441",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                "Иван Петров",
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getApprovedCardNumber(), getCurrentMonth(), getNextYear(), "Иван Петров", getCVC());
     }
 
     public static CardInfo getCardInfoSymbolName() {
-        return new CardInfo("4444444444444441",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                "123456%)",
-                Integer.toString(faker.number().numberBetween(100, 999)));
+        return new CardInfo(getApprovedCardNumber(), getCurrentMonth(), getNextYear(), "123456%)", getCVC());
     }
 
     public static CardInfo getCardInfoCVCEmpty() {
-        return new CardInfo("4444444444444441",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(), " ");
+        return new CardInfo(getApprovedCardNumber(), getCurrentMonth(), getNextYear(), getName(), " ");
     }
 
     public static CardInfo getCardInfoCVCNull() {
-        return new CardInfo("4444444444444441",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy")),
-                faker.name().firstName() + " " + faker.name().lastName(), "000");
+        return new CardInfo(getApprovedCardNumber(), getCurrentMonth(), getNextYear(), getName(), "000");
     }
-
-
 }

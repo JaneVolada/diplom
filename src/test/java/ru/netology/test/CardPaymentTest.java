@@ -100,7 +100,7 @@ public class CardPaymentTest {
         var startPage = new StartPage();
         var cardPayment = startPage.cardPayment();
         cardPayment.fillingPaymentForm(DataHelper.getCardInfoMonthMore());
-        cardPayment.invalidFormatField();
+        cardPayment.expiredLastMonth();
     }
 
     @Test

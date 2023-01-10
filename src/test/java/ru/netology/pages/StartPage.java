@@ -11,7 +11,6 @@ public class StartPage {
     private SelenideElement cardPaymentButton = $(byText("Купить"));
     private SelenideElement creditCardButton = $(byText("Купить в кредит"));
 
-
     public CardPaymentPage cardPayment() {
         cardPaymentButton.click();
         return new CardPaymentPage();
@@ -21,5 +20,4 @@ public class StartPage {
         creditCardButton.click();
         return new CreditCardPage();
     }
-
 }

@@ -12,6 +12,7 @@
 - Успешные - 18;
 - Неуспешных - 14.
 ### Отчет Allure
+![Отчет](https://github.com/JaneVolada/diplom/blob/main/docs/Allure%20Report.png)
 ### Общие рекомендации.
 1. Устранить найденные [ошибки](https://github.com/JaneVolada/diplom/issues)
 2. Добавить в код страницы специально подготовленные CSS атрибуты для тестирования (data-test-id).

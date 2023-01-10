@@ -3,6 +3,9 @@
 1. Обычная оплата по дебетовой карте.
 2. Выдача кредита по данным банковской карты.
 ## Документация
+[Планировании автоматизации тестирования](https://github.com/JaneVolada/diplom/blob/main/docs/Plan.md)
+[Отчётные документы по итогам тестирования](https://github.com/JaneVolada/diplom/blob/main/docs/Report.md)
+[Отчётные документы по итогам автоматизации](https://github.com/JaneVolada/diplom/blob/main/docs/Summary.md)
 
 ## Начало работы
 Перед началом работы удостоверьтесь, что у вас есть необходимый набор ПО, описанный в разделе Prerequisites. Для получения копии проекта необходимо клонировать репозиторий командой `git clone https://github.com/JaneVolada/diplom`
